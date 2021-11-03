@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+          <meta charset="UTF-8">
+          <script src="form.js"></script>
+          <title>Join</title>
+          <style>
+                  table {
+                          /*width: 100%;*/
+                          border: 1px solid #444444;
+                          padding: 5px;
+                          margin-left: auto;
+                          margin-right: auto;
+                  }
+
+                  td {
+                          /*width: 100%;*/
+                          /*border: 1px solid #444444;*/
+                  }
+
+                  .c {
+                          text-align: center;
+                  }
+          </style>
+  </head>
+  <body>
+
+  <p class="c">회원 가입</p>
+  <form action="join.jsp" method="post" name="join_form">
+          <table>
+                  <tr>
+                          <td>ID</td>
+                          <td><input type="text" name="id"></td>
+                  </tr>
+
+                  <tr>
+                          <td>Password</td>
+                          <td><input type="password" name="pw"></td>
+                  </tr>
+
+                  <tr>
+                          <td>이름</td>
+                          <td><input type="text" name="name"></td>
+                  </tr>
+
+                  <tr>
+                          <td>Email</td>
+                          <td><input type="email" name="email"></td>
+                  </tr>
+
+                  <tr>
+                          <td>Address</td>
+                          <td><input type="text" name="address"></td>
+                  </tr>
+
+          </table>
+          <br/>
+          <div class="c">
+                  <input type="button" value="가입" onclick="confirmJoin()">
+                  <input type="reset" value="초기화">
+          </div>
+  </form>
+
+  </body>
+  </html>
