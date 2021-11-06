@@ -3,19 +3,17 @@ package homepage;
 import java.sql.Timestamp;
 
 public class UserDto {
-        private String id;
-        private String pw;
-        private String name;
-        private String email;
-        private String address;
+        private String id;//id
+        private String pw;//pw
+		private String name;
+        private String snum;//학번
         private Timestamp date;
 
-        public UserDto(String id, String pw, String name, String email, String address, Timestamp date) {
+        public UserDto(String id, String pw, String name, String snum, Timestamp date) {
                 this.id = id;
                 this.pw = pw;
                 this.name = name;
-                this.email = email;
-                this.address = address;
+                this.snum = snum;
                 this.date = date;
         }
 
@@ -33,11 +31,8 @@ public class UserDto {
         public String getName() {
         	return name;
         }
-        public String getEmail() {
-        	return email;
-        }
-        public String getAddress() {
-        	return address;
+        public String getSnum() {
+        	return snum;
         }
         public Timestamp getDate() {
         	return date;
@@ -52,16 +47,11 @@ public class UserDto {
         public void setName(String name) {
         	this.name = name;
         }
-        public void setEmail(String email) {
-        	this.email = email;
-        }
-        public void setAddress(String address) {
-        	this.address = address;
+        public void setSnum(String snum) {
+        	this.snum = snum;
         }
         public void setDate(Timestamp date) {
         	this.date = date;
         }
         
-
-        // getter, setter 생략
 }

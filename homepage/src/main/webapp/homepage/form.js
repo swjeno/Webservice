@@ -33,15 +33,9 @@ function confirmLogin() {
                   return;
           }
 
-          if(document.join_form.email.value === ""){
-                  alert("이메일 입력하세요.");
-                  document.join_form.email.focus();
-                  return;
-          }
-
-          if(document.join_form.address.value === ""){
-                  alert("주소를 입력하세요.");
-                  document.join_form.address.focus();
+          if(document.join_form.snum.value === ""){
+                  alert("학번을 입력하세요.");
+                  document.join_form.snum.focus();
                   return;
           }
           document.join_form.submit();
@@ -61,9 +55,9 @@ function confirmLogin() {
                   return;
           }
 
-          if(document.modify_form.address.value === ""){
-                  alert("주소를 입력하세요.");
-                  document.modify_form.address.focus();
+          if(document.modify_form.snum.value === ""){
+                  alert("학번을 입력하세요.");
+                  document.modify_form.snum.focus();
                   return;
           }
           document.modify_form.submit();
