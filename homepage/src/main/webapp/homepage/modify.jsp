@@ -60,14 +60,10 @@
                   </tr>
 
                   <tr>
-                          <td>Email</td>
-                          <td><input type="email" name="email" value="<%= user.getEmail()%>"></td>
+                          <td>학번</td>
+                          <td><input type="text" name="snum" value="<%= user.getSnum()%>"></td>
                   </tr>
 
-                  <tr>
-                          <td>Address</td>
-                          <td><input type="text" name="address" value="<%= user.getAddress()%>"></td>
-                  </tr>
 
           </table>
           <br/>
