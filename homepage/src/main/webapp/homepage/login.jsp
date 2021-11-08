@@ -7,11 +7,14 @@
   <html>
   <head>
           <script src="form.js"></script>
+          <link rel="stylesheet" href="styles.css">
           <title>Login</title>
 
   </head>
   <body>
-  <form action="login_process.jsp" method="post" name="login_form">
+  <div class="login__form">
+  	<h2>산기대 Q&A 게시판</h2>
+    <form action="login_process.jsp" method="post" name="login_form">
           <table>
                   <tr>
                           <td>
@@ -33,8 +36,9 @@
           <br/>
 
 		<button type="button" onclick="confirmLogin()">로그인</button>
-          <button type="button" onclick="location.href='join.html'">회원 가입</button>
-  </form>
+         <button type="button" onclick="location.href='join.html'">회원 가입</button>
+  	</form>
+  </div>
 
   </body>
   </html>

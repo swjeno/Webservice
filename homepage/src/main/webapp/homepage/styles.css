@@ -1,0 +1,89 @@
+.login__form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.join__form {
+	height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.join__form table {
+	border: 1px solid #444444;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.join__form .c {
+	text-align: center;
+}
+
+.user__image {
+	width : 50px;
+	height: 50px;
+}
+
+.mainpage__header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainpage__header div:first-child{
+    display: flex;
+    justify-content: row;
+}
+
+.mainpage__header div:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin-left: auto; margin-right: auto;
+}
+
+
+.num {
+    width: 50px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.writer {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+  
+.title {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.search__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top:20px;
+}
