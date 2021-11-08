@@ -56,8 +56,8 @@
             </select>
             <input type="text" name="search__text">
             <input type="submit" value="검색">
-            <button onclick="">글쓰기</button>
         </form>
+        <input type="button" value="글쓰기">
     </div>
                
 </body>
