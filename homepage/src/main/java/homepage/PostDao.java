@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PostDao {
-        public static int USER_EXISTENT = 1;
-        public static int USER_NONEXISTENT = 2;
-        public static int USER_JOIN_SUCCESS = 3;
-        public static int USER_LOGIN_SUCCESS = 4;
-        public static int USER_LOGIN_FAIL = 5;
+        public static int POST_EXISTENT = 1;
+        public static int POST_NONEXISTENT = 2;
+        public static int POST_JOIN_SUCCESS = 3;
+        public static int POST_LOGIN_SUCCESS = 4;
+        public static int POST_LOGIN_FAIL = 5;
         private static PostDao instance = new PostDao();
 
         public static PostDao getInstance() {
@@ -39,7 +39,7 @@ public class PostDao {
                         pstmt.setString(4, post.getId());
                         pstmt.setTimestamp(5, post.getDate());
                         pstmt.executeUpdate();
-                        rt = USER_JOIN_SUCCESS;
+                        rt = POST_JOIN_SUCCESS;
                 } catch (SQLException e) {
                         e.printStackTrace();
                 } finally {
@@ -97,9 +97,9 @@ public class PostDao {
                         pstmt.setString(1, pnum);
                         rs = pstmt.executeQuery();
                         if (rs.next())
-                                rt = USER_EXISTENT;
+                                rt = POST_EXISTENT;
                         else
-                                rt = USER_NONEXISTENT;
+                                rt = POST_NONEXISTENT;
                 } catch (SQLException e) {
                         e.printStackTrace();
                 } finally {
