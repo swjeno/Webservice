@@ -6,7 +6,7 @@ public class UserDto {
         private String id;//id
         private String pw;//pw
 		private String name;
-        private String snum;//í•™ë²ˆ
+        private String snum;//ÇÐ¹ø
         private Timestamp date;
 
         public UserDto(String id, String pw, String name, String snum, Timestamp date) {
