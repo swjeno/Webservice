@@ -68,8 +68,8 @@
           </table>
           <br/>
           <div class="c">
-                  <input type="button" value="수정" onclick="confirmModify()">
-                  <input type="button" value="취소" onclick="location.hre='login.jsp'">
+          		  <button onclick="location.href='modify_process.jsp'">수정</button>
+          		  <button onclick="location.href='main.jsp'">취소</button>
           </div>
   </form>
 
