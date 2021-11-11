@@ -150,7 +150,7 @@ public class PostDao {
                 return rt;
         }
 */
-        public PostDto getPost(String pnum) {//글 불러오기
+        public PostDto getPostNum(String pnum) {//글 불러오기(글번호)
                 int rt = 0;
                 Connection conn = null;
                 PreparedStatement pstmt = null;
@@ -187,5 +187,102 @@ public class PostDao {
                 }
                 return post;
         }
+        
+        public PostDto getPostId(String id) {//글 불러오기(작성자)
+            int rt = 0;
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            PostDto post = null;
+
+            String query = "SELECT * FROM POST WHERE ID = ?";
+
+            try {
+                    conn = DatabaseUtil.getConnection();
+
+                    if (conn == null) return post;
+                    pstmt = conn.prepareStatement(query);
+                    pstmt.setString(1, id);
+                    rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                            post = new PostDto(rs.getString("pnum"),
+                                            rs.getString("pname"),
+                                            rs.getString("pcontent"),
+                                            rs.getString("id"),
+
+                                            rs.getTimestamp("date"));
+                    }
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            } finally {
+                    try {
+                            if (rs != null) rs.close();
+                            if (pstmt != null) pstmt.close();
+                            if (conn != null) conn.close();
+                    } catch (Exception e) {
+                            e.printStackTrace();
+                    }
+            }
+            return post;
+    }
+        
+        public PostDto getPostPname(String pname) {//글 불러오기(작성자)
+            int rt = 0;
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            PostDto post = null;
+
+            String query = "SELECT * FROM POST WHERE ID = ?";
+
+            try {
+                    conn = DatabaseUtil.getConnection();
+
+                    if (conn == null) return post;
+                    pstmt = conn.prepareStatement(query);
+                    pstmt.setString(1, pname);
+                    rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                            post = new PostDto(rs.getString("pnum"),
+                                            rs.getString("pname"),
+                                            rs.getString("pcontent"),
+                                            rs.getString("id"),
+
+                                            rs.getTimestamp("date"));
+                    }
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            } finally {
+                    try {
+                            if (rs != null) rs.close();
+                            if (pstmt != null) pstmt.close();
+                            if (conn != null) conn.close();
+                    } catch (Exception e) {
+                            e.printStackTrace();
+                    }
+            }
+            return post;
+    }       
+        
+    	public int getNext() {//글번호 부여
+    		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
+            int rt = 0;
+            Connection conn = null;
+            ResultSet rs = null;
+            PostDto post = null;
+    		String sql = "select pnum from post order by pnum desc";
+    		try {
+    			PreparedStatement pstmt = conn.prepareStatement(sql);
+    			rs = pstmt.executeQuery();
+    			if(rs.next()) {
+    				return rs.getInt(1) + 1;
+    			}
+    			return 1; //첫 번째 게시물인 경우
+    		}catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		return -1; //데이터베이스 오류
+    	}
+    	
 
 }
