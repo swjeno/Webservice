@@ -61,7 +61,7 @@
 
                   <tr>
                           <td>학번</td>
-                          <td><input type="text" name="snum" value="<%= user.getSnum()%>"></td>
+                          <td><%= user.getSnum()%></td>
                   </tr>
 
 
