@@ -56,7 +56,8 @@
             </select>
             <input type="text" name="search__text">
             <input type="submit" value="검색">
-            <button onclick="">글쓰기</button>
+            <!-- 글쓰기 버튼 생성 -->
+			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
         </form>
     </div>
                
