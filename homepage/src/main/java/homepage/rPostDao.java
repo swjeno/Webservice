@@ -7,26 +7,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PostDao {
+public class rPostDao {
         public static int POST_EXISTENT = 1;
         public static int POST_NONEXISTENT = 2;
         public static int POST_JOIN_SUCCESS = 3;
         public static int POST_LOGIN_SUCCESS = 4;
         public static int POST_LOGIN_FAIL = 5;
-        private static PostDao instance = new PostDao();
+        private static rPostDao instance = new rPostDao();
 
-        public static PostDao getInstance() {
+        public static rPostDao getInstance() {
                 return instance;
         }
 
-        private PostDao() {
+        private rPostDao() {
         }
 
-        public int insertPost(PostDto post) {//글작성
+        public int insertrPost(rPostDto post) {//post insert
                 int rt = 0;
                 Connection conn = null;
                 PreparedStatement pstmt = null;
-                String query = "INSERT INTO POST VALUES (?,?,?,?)";
+                String query = "INSERT INTO RPOST VALUES (?,?,?,?,?)";
                 try {
                         conn = DatabaseUtil.getConnection();
 
@@ -34,9 +34,10 @@ public class PostDao {
 
                         pstmt = conn.prepareStatement(query);
                         pstmt.setString(1, post.getPnum());
-                        pstmt.setString(2, post.getPname());
-                        pstmt.setString(3, post.getPcontent());
-                        pstmt.setString(4, post.getId());
+                        pstmt.setString(2, post.getrPnum());
+                        pstmt.setString(3, post.getrPname());
+                        pstmt.setString(4, post.getrPcontent());
+                        pstmt.setString(5, post.getId());
                         pstmt.executeUpdate();
                         rt = POST_JOIN_SUCCESS;
                 } catch (SQLException e) {
@@ -53,21 +54,22 @@ public class PostDao {
                 return rt;
         }
 
-        public int updatePost(PostDto post) {//글변경
+        public int updaterPost(rPostDto post) {//post update
                 int rt = 0;
 
                 Connection conn = null;
                 PreparedStatement pstmt = null;
-                String query = "UPDATE POST SET PNAME=?, PCONTENT=? WHERE PNUM=?";
+                String query = "UPDATE RPOST SET RPNAME=?, RPCONTENT=?, RPNUM=? WHERE PNUM=?";
                 try {
                         conn = DatabaseUtil.getConnection();
 
                         if (conn == null) return rt;
 
                         pstmt = conn.prepareStatement(query);
-                        pstmt.setString(1, post.getPname());
-                        pstmt.setString(2, post.getPname());
-                        pstmt.setString(3, post.getPnum());
+                        pstmt.setString(1, post.getrPname());
+                        pstmt.setString(2, post.getrPname());
+                        pstmt.setString(3, post.getrPnum());
+                        pstmt.setString(4, post.getPnum());
                         rt = pstmt.executeUpdate();
                 } catch (SQLException e) {
                         e.printStackTrace();
@@ -81,8 +83,8 @@ public class PostDao {
                 }
                 return rt;
         }
-
-        public int confirmPost(String pnum) {//글확인
+/*
+        public int confirmPost(String pnum) {//post confirm by pnum
                 int rt = 0;
                 Connection conn = null;
                 PreparedStatement pstmt = null;
@@ -113,7 +115,7 @@ public class PostDao {
 
                 return rt;
         }
-/*
+
         public int confirmLogin(String id, String pw) {
                 int rt = 0;
                 Connection conn = null;
@@ -149,14 +151,14 @@ public class PostDao {
                 return rt;
         }
 */
-        public PostDto getPostNum(String pnum) {//글 불러오기(글번호)
+        public rPostDto getPostNum(String pnum) {//getpost by rpnum
                 int rt = 0;
                 Connection conn = null;
                 PreparedStatement pstmt = null;
                 ResultSet rs = null;
-                PostDto post = null;
+                rPostDto post = null;
 
-                String query = "SELECT * FROM POST WHERE PNUM = ?";
+                String query = "SELECT * FROM RPOST WHERE PNUM = ?";
 
                 try {
                         conn = DatabaseUtil.getConnection();
@@ -166,7 +168,8 @@ public class PostDao {
                         pstmt.setString(1, pnum);
                         rs = pstmt.executeQuery();
                         if (rs.next()) {
-                                post = new PostDto(rs.getString("pnum"),
+                                post = new rPostDto(rs.getString("pnum"),
+                                				rs.getString("rpnum"),
                                                 rs.getString("pname"),
                                                 rs.getString("pcontent"),
                                                 rs.getString("id"));
@@ -185,14 +188,14 @@ public class PostDao {
                 return post;
         }
         
-        public PostDto getPostId(String id) {//글 불러오기(작성자)
+        public rPostDto getrPostId(String id) {//getpost by id
             int rt = 0;
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
-            PostDto post = null;
+            rPostDto post = null;
 
-            String query = "SELECT * FROM POST WHERE ID = ?";
+            String query = "SELECT * FROM RPOST WHERE ID = ?";
 
             try {
                     conn = DatabaseUtil.getConnection();
@@ -202,7 +205,8 @@ public class PostDao {
                     pstmt.setString(1, id);
                     rs = pstmt.executeQuery();
                     if (rs.next()) {
-                            post = new PostDto(rs.getString("pnum"),
+                            post = new rPostDto(rs.getString("pnum"),
+                            				rs.getString("rpnum"),
                                             rs.getString("pname"),
                                             rs.getString("pcontent"),
                                             rs.getString("id"));
@@ -221,14 +225,14 @@ public class PostDao {
             return post;
     }
         
-        public PostDto getPostPname(String pname) {//글 불러오기(글제목)
+        public rPostDto getrPostPname(String pname) {//getpost by PNAME
             int rt = 0;
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
-            PostDto post = null;
+            rPostDto post = null;
 
-            String query = "SELECT * FROM POST WHERE PNAME = ?";
+            String query = "SELECT * FROM RPOST WHERE PNAME = ?";
 
             try {
                     conn = DatabaseUtil.getConnection();
@@ -238,9 +242,10 @@ public class PostDao {
                     pstmt.setString(1, pname);
                     rs = pstmt.executeQuery();
                     if (rs.next()) {
-                            post = new PostDto(rs.getString("pnum"),
-                                            rs.getString("pname"),
-                                            rs.getString("pcontent"),
+                            post = new rPostDto(rs.getString("pnum"),
+                            				rs.getString("rpnum"),
+                                            rs.getString("rpname"),
+                                            rs.getString("rpcontent"),
                                             rs.getString("id"));
                     }
             } catch (SQLException e) {
@@ -257,13 +262,14 @@ public class PostDao {
             return post;
     }       
         
+        
     	public int getNext() {//글번호 부여
     		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
             int rt = 0;
             Connection conn = null;
             ResultSet rs = null;
-            PostDto post = null;
-    		String sql = "select pnum from post order by pnum desc";
+            rPostDto post = null;
+    		String sql = "select pnum from rpost order by rpnum desc";
     		try {
     			PreparedStatement pstmt = conn.prepareStatement(sql);
     			rs = pstmt.executeQuery();
@@ -277,82 +283,5 @@ public class PostDao {
     		return -1; //데이터베이스 오류
     	}
     	
-
-        public String getPostName(int Pnum)        // 삭제할 파일명을 가져온다.
-        {
-            String fileName = null;
-            
-            try {
-                Connection conn = null;
-                PreparedStatement pstmt = null;
-                ResultSet rs = null;
-                StringBuffer sql = new StringBuffer();
-                sql.append("SELECT PNAME from POST where PNUM=?");
-                
-                pstmt = conn.prepareStatement(sql.toString());
-                pstmt.setInt(1, Pnum);
-                
-                rs = pstmt.executeQuery();
-                if(rs.next()) fileName = rs.getString("PNAME");
-                
-            } catch (Exception e) {
-                throw new RuntimeException(e.getMessage());
-            }
-            
-            close();
-            return fileName;
-        } // end getFileName
-            
-        // 게시글 삭제
-        public boolean deletePost(int Pnum) 
-        {
-            boolean result = false;
-     
-            try {
-                Connection conn = null;
-                PreparedStatement pstmt = null;
-                ResultSet rs = null;
-                StringBuffer sql = new StringBuffer();
-                conn.setAutoCommit(false); // 자동 커밋을 false로 한다.
-     
-                sql.append("DELETE FROM POST");
-                sql.append(" WHERE PNUM = ?");
-                
-                pstmt = conn.prepareStatement(sql.toString());
-                pstmt.setInt(1, Pnum);
-                
-                int flag = pstmt.executeUpdate();
-                if(flag > 0){
-                    result = true;
-                    conn.commit(); // 완료시 커밋
-                }    
-                
-            } catch (Exception e) {
-                try {
-                	Connection conn = null;
-					conn.rollback(); // 오류시 롤백
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
-                }
-                throw new RuntimeException(e.getMessage());
-            }
-     
-            close();
-            return result;
-        } // end deleteBoard
-        
-        // DB 자원해제
-        private void close()
-        {
-        	Connection conn = null;
-            PreparedStatement pstmt = null;
-            try {
-                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
-                if ( conn != null ){ conn.close(); conn=null;    }
-            } catch (Exception e) {
-                throw new RuntimeException(e.getMessage());
-            }
-        } // end close()
-
 
 }

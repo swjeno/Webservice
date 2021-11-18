@@ -7,14 +7,12 @@ public class PostDto {
         private String pname;//pw
 		private String pcontent;
         private String id;//�븰踰�
-        private Timestamp date;
 
-        public PostDto(String pnum, String pname, String pcontent, String id, Timestamp date) {
+        public PostDto(String pnum, String pname, String pcontent, String id) {
                 this.pnum = pnum;
                 this.pname = pname;
                 this.pcontent = pcontent;
                 this.id = id;
-                this.date = date;
         }
 
         public PostDto() {
@@ -34,9 +32,7 @@ public class PostDto {
         public String getId() {
         	return id;
         }
-        public Timestamp getDate() {
-        	return date;
-        }
+        
         
 
         public void setPnum(String pnum) {
@@ -50,9 +46,6 @@ public class PostDto {
         }
         public void setId(String id) {
         	this.id = id;
-        }
-        public void setDate(Timestamp date) {
-        	this.date = date;
         }
         
 }
